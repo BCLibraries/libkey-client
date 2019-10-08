@@ -69,7 +69,12 @@ class LibKeyClient
     public function request(string $doi): ResponseInterface
     {
         $uri = "https://public-api.thirdiron.com/public/v1/libraries/{$this->library_id}/articles/doi/$doi?include=journal";
-        $request_options = ['auth_bearer' => $this->libkey_apikey];
+        $request_options = [
+            'auth_bearer' => $this->libkey_apikey,
+            'headers' => [
+                'Accept' => 'application/json'
+            ]
+        ];
         try {
             return $this->http_client->request('GET', $uri, $request_options);
         } catch (TransportExceptionInterface $e) {
