@@ -22,15 +22,15 @@ class LibKeyParser
 
         $response->setId($data->id)
             ->setType($data->type)
-            ->setTitle($data->title)
-            ->setDate($data->date)
-            ->setAuthors($data->authors)
-            ->setInPress($data->inPress)
+            ->setTitle($data->title ?? null)
+            ->setDate($data->date ?? null)
+            ->setAuthors($data->authors ?? null)
+            ->setInPress($data->inPress ?? null)
             ->setFullTextFile($data->fullTextFile)
             ->setContentLocation($data->contentLocation)
             ->setAvailableThroughBrowzine($data->availableThroughBrowzine)
-            ->setStartPage($data->startPage)
-            ->setEndPage($data->endPage)
+            ->setStartPage($data->startPage ?? null)
+            ->setEndPage($data->endPage ?? null)
             ->setBrowzineWebLink($data->browzineWebLink);
 
         if (isset($json->included)) {

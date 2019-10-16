@@ -5,7 +5,7 @@ namespace BCLib\Tests;
 use BCLib\LibKeyClient\LibKeyClient;
 use PHPUnit\Framework\TestCase;
 
-require_once __DIR__.'/MockHTTPClient.php';
+require_once __DIR__ . '/MockHTTPClient.php';
 
 class LibKeyClientTest extends TestCase
 {
@@ -39,7 +39,12 @@ class LibKeyClientTest extends TestCase
 
     public function testRequestSetsAuthorizationCorrectly()
     {
-        $expected_options = ['auth_bearer' => $this->api_key];
+        $expected_options = [
+            'auth_bearer' => $this->api_key,
+            'headers' => [
+                'Accept' => 'application/json'
+            ]
+        ];
         $this->libkey_client->request('/10.001/notarealdoi');
         $actual_options = $this->http_client->last_options;
         $this->assertEquals($expected_options, $actual_options);
