@@ -20,18 +20,18 @@ class LibKeyParser
 
         $response = new LibKeyResponse();
 
-        $response->setId($data->id)
-            ->setType($data->type)
+        $response->setId($data->id ?? null)
+            ->setType($data->type ?? null)
             ->setTitle($data->title ?? null)
             ->setDate($data->date ?? null)
             ->setAuthors($data->authors ?? null)
             ->setInPress($data->inPress ?? null)
-            ->setFullTextFile($data->fullTextFile)
-            ->setContentLocation($data->contentLocation)
-            ->setAvailableThroughBrowzine($data->availableThroughBrowzine)
+            ->setFullTextFile($data->fullTextFile ?? null)
+            ->setContentLocation($data->contentLocation ?? null)
+            ->setAvailableThroughBrowzine($data->availableThroughBrowzine ?? null)
             ->setStartPage($data->startPage ?? null)
             ->setEndPage($data->endPage ?? null)
-            ->setBrowzineWebLink($data->browzineWebLink);
+            ->setBrowzineWebLink($data->browzineWebLink ?? null);
 
         if (isset($json->included)) {
             $response->setJournals(array_map(self::class . '::parseJournal', $json->included));
@@ -49,13 +49,13 @@ class LibKeyParser
     private static function parseJournal(\stdClass $json): Journal
     {
         $journal = new Journal();
-        return $journal->setId($json->id)
-            ->setType($json->type)
-            ->setTitle($json->title)
-            ->setIssn($json->issn)
-            ->setSJRValue($json->sjrValue)
-            ->setCoverImageUrl($json->coverImageUrl)
-            ->setBrowzineEnabled($json->browzineEnabled)
-            ->setBrowzineWebLink($json->browzineWebLink);
+        return $journal->setId($json->id ?? null)
+            ->setType($json->type ?? null)
+            ->setTitle($json->title ?? null)
+            ->setIssn($json->issn ?? null)
+            ->setSJRValue($json->sjrValue ?? null)
+            ->setCoverImageUrl($json->coverImageUrl ?? null)
+            ->setBrowzineEnabled($json->browzineEnabled ?? null)
+            ->setBrowzineWebLink($json->browzineWebLink ?? null);
     }
 }
