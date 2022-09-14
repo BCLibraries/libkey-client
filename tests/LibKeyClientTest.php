@@ -1,6 +1,6 @@
 <?php
 
-namespace BCLib\Tests;
+namespace BCLib\LibKeyClient\Tests;
 
 use BCLib\LibKeyClient\LibKeyClient;
 use PHPUnit\Framework\TestCase;
@@ -9,25 +9,10 @@ require_once __DIR__ . '/MockHTTPClient.php';
 
 class LibKeyClientTest extends TestCase
 {
-    /**
-     * @var string
-     */
     protected string $api_key;
-
-    /**
-     * @var string
-     */
-    protected $library_id;
-
-    /**
-     * @var MockHttpClient
-     */
-    protected $http_client;
-
-    /**
-     * @var LibKeyClient
-     */
-    protected $libkey_client;
+    protected string $library_id;
+    protected MockHttpClient $http_client;
+    protected LibKeyClient $libkey_client;
 
     public function setUp(): void
     {
@@ -52,7 +37,7 @@ class LibKeyClientTest extends TestCase
 
     public function testRequestSendsCorrectURL()
     {
-        $expected_uri = "https://public-api.thirdiron.com/public/v1/libraries/{$this->library_id}/articles/doi/10.001/notarealdoi?include=journal";
+        $expected_uri = "https://public-api.thirdiron.com/public/v1/libraries/$this->library_id/articles/doi/10.001/notarealdoi?include=journal";
         $this->libkey_client->request('10.001/notarealdoi');
         $actual_uri = $this->http_client->last_uri;
         $this->assertEquals($expected_uri, $actual_uri);

@@ -1,14 +1,14 @@
 <?php
 
-namespace BCLib\Tests;
+namespace BCLib\LibKeyClient\Tests;
 
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class MockHTTPClient extends \Symfony\Component\HttpClient\MockHttpClient
 {
-    public $last_method;
-    public $last_uri;
-    public $last_options;
+    public string $last_method;
+    public string $last_uri;
+    public array $last_options;
 
     public function request(
         string $method,

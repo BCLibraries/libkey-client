@@ -1,6 +1,6 @@
 <?php
 
-namespace BCLib\Tests;
+namespace BCLib\LibKeyClient\Tests;
 
 use BCLib\LibKeyClient\LibKeyParser;
 use PHPUnit\Framework\TestCase;
@@ -8,18 +8,12 @@ use PHPUnit\Framework\TestCase;
 class LibKeyParserTest extends TestCase
 {
     /**
-     * @var \BCLib\LibKeyClient\LibKeyParser
-     */
-    private $parser;
-
-    /**
      * @var false|string
      */
     private $json;
 
     public function setUp(): void
     {
-        $this->parser = new LibKeyParser();
         $this->json = file_get_contents(__DIR__ . '/libkey-response-01.json');
     }
 
