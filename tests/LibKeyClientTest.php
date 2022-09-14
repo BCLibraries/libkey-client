@@ -12,7 +12,7 @@ class LibKeyClientTest extends TestCase
     /**
      * @var string
      */
-    protected $api_key;
+    protected string $api_key;
 
     /**
      * @var string
@@ -29,7 +29,7 @@ class LibKeyClientTest extends TestCase
      */
     protected $libkey_client;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->http_client = new MockHttpClient();
         $this->api_key = 'API-KEY-HERE';
