@@ -2,6 +2,8 @@
 
 namespace BCLib\LibKeyClient;
 
+use stdClass;
+
 /**
  * Build a LibKeyResponse from raw json
  */
@@ -9,9 +11,6 @@ class LibKeyParser
 {
     /**
      * Parse a LibKey API response
-     *
-     * @param string $json the raw JSON string
-     * @return LibKeyResponse
      */
     public static function parse(string $json): LibKeyResponse
     {
@@ -31,7 +30,8 @@ class LibKeyParser
             ->setAvailableThroughBrowzine($data->availableThroughBrowzine ?? null)
             ->setStartPage($data->startPage ?? null)
             ->setEndPage($data->endPage ?? null)
-            ->setBrowzineWebLink($data->browzineWebLink ?? null);
+            ->setBrowzineWebLink($data->browzineWebLink ?? null)
+            ->setRetractionNoticeUrl($data->retractionNoticeUrl ?? null);
 
         if (isset($json->included)) {
             $response->setJournals(array_map(self::class . '::parseJournal', $json->included));
@@ -42,11 +42,8 @@ class LibKeyParser
 
     /**
      * Parse a single journal
-     *
-     * @param \stdClass $json
-     * @return Journal
      */
-    private static function parseJournal(\stdClass $json): Journal
+    private static function parseJournal(stdClass $json): Journal
     {
         $journal = new Journal();
         return $journal->setId($json->id ?? null)

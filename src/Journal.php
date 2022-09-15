@@ -11,39 +11,20 @@ namespace BCLib\LibKeyClient;
  */
 class Journal
 {
-    /** @var int */
-    private $id;
-
-    /** @var string|null */
-    private $type;
-
-    /** @var string|null */
-    private $title;
-
-    /** @var string|null */
-    private $issn;
-
-    /** @var float|null */
-    private $sjr_value;
-
-    /** @var string|null */
-    private $cover_image_url;
-
-    /** @var bool */
-    private $browzine_enabled;
-
-    /** @var string|null */
-    private $browzine_web_link;
+    private int $id;
+    private ?string $type;
+    private ?string $title;
+    private ?string $issn;
+    private ?float $sjr_value;
+    private ?string $cover_image_url;
+    private bool $browzine_enabled;
+    private ?string $browzine_web_link;
 
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return Journal
-     */
     public function setId(int $id): Journal
     {
         $this->id = $id;
@@ -55,10 +36,6 @@ class Journal
         return $this->type;
     }
 
-    /**
-     * @param string|null $type
-     * @return Journal
-     */
     public function setType(?string $type): Journal
     {
         $this->type = $type;
@@ -70,10 +47,6 @@ class Journal
         return $this->title;
     }
 
-    /**
-     * @param string|null $title
-     * @return Journal
-     */
     public function setTitle(?string $title): Journal
     {
         $this->title = $title;
@@ -85,10 +58,6 @@ class Journal
         return $this->issn;
     }
 
-    /**
-     * @param string|null $issn
-     * @return Journal
-     */
     public function setISSN(?string $issn): Journal
     {
         $this->issn = $issn;
@@ -100,10 +69,6 @@ class Journal
         return $this->sjr_value;
     }
 
-    /**
-     * @param float|null $sjr_value
-     * @return Journal
-     */
     public function setSJRValue(?float $sjr_value): Journal
     {
         $this->sjr_value = $sjr_value;
@@ -115,10 +80,6 @@ class Journal
         return $this->cover_image_url;
     }
 
-    /**
-     * @param string|null $cover_image_url
-     * @return Journal
-     */
     public function setCoverImageUrl(?string $cover_image_url): Journal
     {
         $this->cover_image_url = $cover_image_url;
@@ -130,10 +91,6 @@ class Journal
         return $this->browzine_enabled;
     }
 
-    /**
-     * @param bool|null $browzine_enabled
-     * @return Journal
-     */
     public function setBrowzineEnabled(?bool $browzine_enabled): Journal
     {
         $this->browzine_enabled = isset($browzine_enabled) && $browzine_enabled;
@@ -145,10 +102,6 @@ class Journal
         return $this->browzine_web_link;
     }
 
-    /**
-     * @param string|null $browzine_web_link
-     * @return Journal
-     */
     public function setBrowzineWebLink(?string $browzine_web_link): Journal
     {
         $this->browzine_web_link = $browzine_web_link;

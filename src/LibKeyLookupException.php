@@ -2,6 +2,8 @@
 
 namespace BCLib\LibKeyClient;
 
-class LibKeyLookupException extends \RuntimeException
+use RuntimeException;
+
+class LibKeyLookupException extends RuntimeException
 {
 }

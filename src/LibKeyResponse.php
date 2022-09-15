@@ -11,54 +11,28 @@ namespace BCLib\LibKeyClient;
  */
 class LibKeyResponse
 {
-    /** @var int */
-    private $id;
-
-    /** @var string */
-    private $type;
-
-    /** @var string */
-    private $title;
-
-    /** @var string */
-    private $date;
-
-    /** @var string */
-    private $authors;
-
-    /** @var bool */
-    private $in_press = false;
-
-    /** @var string|null */
-    private $full_text_file;
-
-    /** @var string|null */
-    private $content_location;
-
-    /** @var bool */
-    private $available_through_browzine;
-
-    /** @var string|null */
-    private $start_page;
-
-    /** @var string|null */
-    private $end_page;
-
-    /** @var string|null */
-    private $browzine_web_link;
+    private int $id;
+    private string $type;
+    private string $title;
+    private string $date;
+    private string $authors;
+    private bool $in_press = false;
+    private ?string $full_text_file;
+    private ?string $content_location;
+    private bool $available_through_browzine;
+    private ?string $start_page;
+    private ?string $end_page;
+    private ?string $browzine_web_link;
+    private ?string $retraction_notice_url;
 
     /** @var Journal[] */
-    private $journals;
+    private array $journals;
 
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return LibKeyResponse
-     */
     public function setId(int $id): LibKeyResponse
     {
         $this->id = $id;
@@ -70,10 +44,6 @@ class LibKeyResponse
         return $this->type;
     }
 
-    /**
-     * @param string $type
-     * @return LibKeyResponse
-     */
     public function setType(string $type): LibKeyResponse
     {
         $this->type = $type;
@@ -85,10 +55,6 @@ class LibKeyResponse
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     * @return LibKeyResponse
-     */
     public function setTitle(string $title): LibKeyResponse
     {
         $this->title = $title;
@@ -100,10 +66,6 @@ class LibKeyResponse
         return $this->date;
     }
 
-    /**
-     * @param string $date
-     * @return LibKeyResponse
-     */
     public function setDate(string $date): LibKeyResponse
     {
         $this->date = $date;
@@ -115,10 +77,6 @@ class LibKeyResponse
         return $this->authors;
     }
 
-    /**
-     * @param string $authors
-     * @return LibKeyResponse
-     */
     public function setAuthors(string $authors): LibKeyResponse
     {
         $this->authors = $authors;
@@ -130,10 +88,6 @@ class LibKeyResponse
         return $this->in_press;
     }
 
-    /**
-     * @param bool $in_press
-     * @return LibKeyResponse
-     */
     public function setInPress(bool $in_press): LibKeyResponse
     {
         $this->in_press = $in_press;
@@ -145,10 +99,6 @@ class LibKeyResponse
         return $this->full_text_file;
     }
 
-    /**
-     * @param string|null $full_text_file
-     * @return LibKeyResponse
-     */
     public function setFullTextFile(?string $full_text_file): LibKeyResponse
     {
         $this->full_text_file = $full_text_file;
@@ -160,10 +110,6 @@ class LibKeyResponse
         return $this->content_location;
     }
 
-    /**
-     * @param string|null $content_location
-     * @return LibKeyResponse
-     */
     public function setContentLocation(?string $content_location): LibKeyResponse
     {
         $this->content_location = $content_location;
@@ -175,10 +121,6 @@ class LibKeyResponse
         return $this->available_through_browzine;
     }
 
-    /**
-     * @param bool $available_through_browzine
-     * @return LibKeyResponse
-     */
     public function setAvailableThroughBrowzine(bool $available_through_browzine): LibKeyResponse
     {
         $this->available_through_browzine = $available_through_browzine;
@@ -190,10 +132,6 @@ class LibKeyResponse
         return $this->start_page;
     }
 
-    /**
-     * @param string|null $start_page
-     * @return LibKeyResponse
-     */
     public function setStartPage(?string $start_page): LibKeyResponse
     {
         $this->start_page = $start_page;
@@ -205,10 +143,6 @@ class LibKeyResponse
         return $this->end_page;
     }
 
-    /**
-     * @param string|null $end_page
-     * @return LibKeyResponse
-     */
     public function setEndPage(?string $end_page): LibKeyResponse
     {
         $this->end_page = $end_page;
@@ -220,10 +154,6 @@ class LibKeyResponse
         return $this->browzine_web_link;
     }
 
-    /**
-     * @param string|null $browzine_web_link
-     * @return LibKeyResponse
-     */
     public function setBrowzineWebLink(?string $browzine_web_link): LibKeyResponse
     {
         $this->browzine_web_link = $browzine_web_link;
@@ -246,5 +176,21 @@ class LibKeyResponse
     {
         $this->journals = $journals;
         return $this;
+    }
+
+    public function getRetractionNoticeUrl(): ?string
+    {
+        return $this->retraction_notice_url;
+    }
+
+    public function setRetractionNoticeUrl(?string $url): LibKeyResponse
+    {
+        $this->retraction_notice_url = $url;
+        return $this;
+    }
+
+    public function isRetracted(): bool
+    {
+        return isset($this->retraction_notice_url) && $this->retraction_notice_url !== '';
     }
 }

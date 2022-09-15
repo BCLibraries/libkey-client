@@ -12,30 +12,14 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class LibKeyClient
 {
-    /**
-     * @var string
-     */
-    private $library_id;
-
-    /**
-     * @var string
-     */
-    private $libkey_apikey;
-
-    /**
-     * @var HttpClientInterface
-     */
-    private $http_client;
+    private string $library_id;
+    private string $libkey_apikey;
+    private HttpClientInterface $http_client;
 
     /**
      * Builder function
      *
      * Builds a LibKey client. If $http_client is omitted, it will create a new CurlHttpClient.
-     *
-     * @param string $library_id
-     * @param string $libkey_apikey
-     * @param HttpClientInterface|null $http_client
-     * @return LibKeyClient
      */
     public static function build(
         string $library_id,
@@ -62,13 +46,11 @@ class LibKeyClient
      * Returns a ResponseInterface instead of parsed text so that multiple requests can be made concurrently to
      * different services using the Symfony HttpClientInterface.
      *
-     * @param string $doi
-     * @return ResponseInterface
      * @throws LibKeyLookupException
      */
     public function request(string $doi): ResponseInterface
     {
-        $uri = "https://public-api.thirdiron.com/public/v1/libraries/{$this->library_id}/articles/doi/$doi?include=journal";
+        $uri = "https://public-api.thirdiron.com/public/v1/libraries/$this->library_id/articles/doi/$doi?include=journal";
         $request_options = [
             'auth_bearer' => $this->libkey_apikey,
             'headers' => [
@@ -83,8 +65,8 @@ class LibKeyClient
     }
 
     /**
-     * @param ResponseInterface $response
-     * @return LibKeyResponse
+     * Parse a LibKey response
+     *
      * @throws LibKeyLookupException|null
      */
     public function parse(ResponseInterface $response): ?LibKeyResponse
