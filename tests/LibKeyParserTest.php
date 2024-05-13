@@ -2,7 +2,7 @@
 
 namespace BCLib\LibKeyClient\Tests;
 
-use BCLib\LibKeyClient\LibKeyParser;
+use BCLib\LibKeyClient\LibKeyJSONParser;
 use PHPUnit\Framework\TestCase;
 
 class LibKeyParserTest extends TestCase
@@ -19,7 +19,7 @@ class LibKeyParserTest extends TestCase
 
     public function testParseParsesCorrectly()
     {
-        $response = LibKeyParser::parse($this->json);
+        $response = LibKeyJSONParser::parse($this->json);
 
         // Data
         $this->assertEquals(151576387, $response->getId());

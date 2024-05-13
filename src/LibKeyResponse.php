@@ -9,188 +9,149 @@ namespace BCLib\LibKeyClient;
  * benefit of better IDE/static analysis, a more logical structure, and the ability to manipulate the response during
  * parsing if necessary.
  */
-class LibKeyResponse
+readonly class LibKeyResponse
 {
-    private int $id;
-    private string $type;
-    private string $title;
-    private string $date;
-    private string $authors;
-    private bool $in_press = false;
-    private ?string $full_text_file;
-    private ?string $content_location;
-    private bool $available_through_browzine;
-    private ?string $start_page;
-    private ?string $end_page;
-    private ?string $browzine_web_link;
-    private ?string $retraction_notice_url;
+    public int $id;
+    public string $type;
+    public string $title;
+    public string $date;
+    public string $authors;
+    public bool $in_press;
+    public ?string $full_text_file;
+    public ?string $content_location;
+    public bool $available_through_browzine;
+    public ?string $start_page;
+    public ?string $end_page;
+    public ?string $browzine_web_link;
+    public ?string $retraction_notice_url;
+    public bool $is_retracted;
 
     /** @var Journal[] */
-    private array $journals;
+    public array $journals;
 
+    public function __construct(
+        int $id,
+        string $type,
+        string $title,
+        string $date,
+        string $authors,
+        bool $in_press,
+        ?string $full_text_file,
+        ?string $content_location,
+        bool $available_through_browzine,
+        ?string $start_page,
+        ?string $end_page,
+        ?string $browzine_web_link,
+        ?string $retraction_notice_url,
+        array $journals
+    ) {
+        $this->id = $id;
+        $this->type = $type;
+        $this->title = $title;
+        $this->date = $date;
+        $this->authors = $authors;
+        $this->in_press = $in_press;
+        $this->full_text_file = $full_text_file;
+        $this->content_location = $content_location;
+        $this->available_through_browzine = $available_through_browzine;
+        $this->start_page = $start_page;
+        $this->end_page = $end_page;
+        $this->browzine_web_link = $browzine_web_link;
+        $this->retraction_notice_url = $retraction_notice_url;
+        $this->is_retracted = isset($retraction_notice_url) && $retraction_notice_url !== '';
+        $this->journals = $journals;
+    }
+
+    /** @deprecated */
     public function getId(): int
     {
         return $this->id;
     }
 
-    public function setId(int $id): LibKeyResponse
-    {
-        $this->id = $id;
-        return $this;
-    }
-
+    /** @deprecated */
     public function getType(): string
     {
         return $this->type;
     }
 
-    public function setType(string $type): LibKeyResponse
-    {
-        $this->type = $type;
-        return $this;
-    }
-
+    /** @deprecated */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function setTitle(string $title): LibKeyResponse
-    {
-        $this->title = $title;
-        return $this;
-    }
-
+    /** @deprecated */
     public function getDate(): string
     {
         return $this->date;
     }
 
-    public function setDate(string $date): LibKeyResponse
-    {
-        $this->date = $date;
-        return $this;
-    }
-
+    /** @deprecated */
     public function getAuthors(): string
     {
         return $this->authors;
     }
 
-    public function setAuthors(string $authors): LibKeyResponse
-    {
-        $this->authors = $authors;
-        return $this;
-    }
-
+    /** @deprecated */
     public function isInPress(): bool
     {
         return $this->in_press;
     }
 
-    public function setInPress(bool $in_press): LibKeyResponse
-    {
-        $this->in_press = $in_press;
-        return $this;
-    }
-
+    /** @deprecated */
     public function getFullTextFile(): ?string
     {
         return $this->full_text_file;
     }
 
-    public function setFullTextFile(?string $full_text_file): LibKeyResponse
-    {
-        $this->full_text_file = $full_text_file;
-        return $this;
-    }
-
+    /** @deprecated */
     public function getContentLocation(): ?string
     {
         return $this->content_location;
     }
 
-    public function setContentLocation(?string $content_location): LibKeyResponse
-    {
-        $this->content_location = $content_location;
-        return $this;
-    }
-
+    /** @deprecated */
     public function isAvailableThroughBrowzine(): bool
     {
         return $this->available_through_browzine;
     }
 
-    public function setAvailableThroughBrowzine(bool $available_through_browzine): LibKeyResponse
-    {
-        $this->available_through_browzine = $available_through_browzine;
-        return $this;
-    }
-
+    /** @deprecated */
     public function getStartPage(): ?string
     {
         return $this->start_page;
     }
 
-    public function setStartPage(?string $start_page): LibKeyResponse
-    {
-        $this->start_page = $start_page;
-        return $this;
-    }
-
+    /** @deprecated */
     public function getEndPage(): ?string
     {
         return $this->end_page;
     }
 
-    public function setEndPage(?string $end_page): LibKeyResponse
-    {
-        $this->end_page = $end_page;
-        return $this;
-    }
-
+    /** @deprecated */
     public function getBrowzineWebLink(): ?string
     {
         return $this->browzine_web_link;
     }
 
-    public function setBrowzineWebLink(?string $browzine_web_link): LibKeyResponse
-    {
-        $this->browzine_web_link = $browzine_web_link;
-        return $this;
-    }
-
     /**
      * @return Journal[]
+     * @deprecated
      */
     public function getJournals(): array
     {
         return $this->journals;
     }
 
-    /**
-     * @param Journal[] $journals
-     * @return LibKeyResponse
-     */
-    public function setJournals(array $journals): LibKeyResponse
-    {
-        $this->journals = $journals;
-        return $this;
-    }
-
+    /** @deprecated */
     public function getRetractionNoticeUrl(): ?string
     {
         return $this->retraction_notice_url;
     }
 
-    public function setRetractionNoticeUrl(?string $url): LibKeyResponse
-    {
-        $this->retraction_notice_url = $url;
-        return $this;
-    }
-
+    /** @deprecated */
     public function isRetracted(): bool
     {
-        return isset($this->retraction_notice_url) && $this->retraction_notice_url !== '';
+        return $this->is_retracted;
     }
 }

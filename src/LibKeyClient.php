@@ -73,7 +73,7 @@ class LibKeyClient
     {
         try {
             if ($response->getStatusCode() === 200) {
-                return LibKeyParser::parse($response->getContent());
+                return LibKeyJSONParser::parse($response->getContent());
             }
         } catch (ClientExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface|TransportExceptionInterface $e) {
             $error_url = $response->getInfo()['url'];
